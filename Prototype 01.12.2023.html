@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image swapping</title>
+<style>
+	body {
+		text-align: center;
+	}
+
+	#imageContainer img {
+		height: 100vh;
+		width: auto;
+	}
+</style>
+</head>
+
+<body>
+<div id="imageContainer"> </div> <!-- Empty div to contain equation image -->
+
+<script>
+	var EQUATIONS = ["https://equatio-api.texthelp.com/svg/S%3D%5Cfrac%7Bu%2Bv%7D%7B2%7Dt", "https://equatio-api.texthelp.com/svg/F%3Dma","https://equatio-api.texthelp.com/svg/E_P%3Dmgh","https://equatio-api.texthelp.com/svg/V%3DIR","https://equatio-api.texthelp.com/svg/%5Cfrac%7BV_P%7D%7BV_S%7D%3D%5Cfrac%7BV_P%7D%7BN_S%7D"]
+	var currentImage = 0;
+	// 2 Variables: The list of names of images and the index for the current image
+
+	function swapImage() {
+		var imageContainer = document.getElementById("imageContainer");
+		if (currentImage == EQUATIONS.length) currentImage = 0; // Reset to first image if all images have been shown
+
+		imageContainer.innerHTML = "<img src='" + EQUATIONS[currentImage] + "' alt='Equation Image' style='height: 80vh; width: 80vh;'>"; //Sets the current image in the container
+		currentImage++; //Increases current currentImage variable by 1
+	}
+
+	// Call the swapImage function, this starts the program
+	swapImage();
+
+	// Set an interval to automatically swap images every 60 seconds
+	setInterval(swapImage, 60000);
+</script>
+
+</body>
+</html>
+
