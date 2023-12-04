@@ -5,30 +5,69 @@
 <style>
     body {
         text-align: center;
+        margin: 0;
+        padding: 0;
     }
 
+    #imageContainer {
+        position: relative;
+        height: 80vh;
+        overflow: hidden;
+    }
+    
     #imageContainer img {
-        height: 100vh;
-        width: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    #imageContainer2 {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 20vh;
+        background-color: transparent;
+    }
+
+    #imageContainer2 img {
+        height: 100%;
+        width: 60%;
+        object-fit: contain;
     }
 </style>
 </head>
 
 <body>
-<div id="imageContainer"> </div>
+<div id="imageContainer"></div>
+<div id="imageContainer2"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     var EQUATIONS = [];
+    var WORDEQUATIONS = [];
     var currentImage = 0;
-    var fileContent = ""; // Variable to store the fetched content
+    var currentImage2 = 0;
+    var fileContent = "";
+    var fileContent2 = "";
 
     function swapImage() {
         var imageContainer = document.getElementById("imageContainer");
         if (currentImage == EQUATIONS.length) currentImage = 0;
 
-        imageContainer.innerHTML = "<img src='" + EQUATIONS[currentImage] + "' alt='Equation Image' style='height: 80vh; width: 80vh;'>";
+        imageContainer.innerHTML = "<img src='" + EQUATIONS[currentImage] + "' alt='Equation Image'>";
         currentImage++;
+    }
+
+    function swapWordImage() {
+        var imageContainer2 = document.getElementById("imageContainer2");
+        if (currentImage2 == WORDEQUATIONS.length) currentImage2 = 0;
+
+        imageContainer2.innerHTML = "<img src='" + WORDEQUATIONS[currentImage2] + "' alt='Word Equation Image'>";
+        currentImage2++;
     }
 
     function getFileContent() {
@@ -36,19 +75,31 @@
         axios.get(url)
             .then(response => {
                 fileContent = response.data;
-                updateList(); // Update the list with the fetched content
+                updateList();
             })
             .then(() => {
                 setInterval(swapImage, 5000);
-                setInterval(updateList, 30000); // Update the list every 30 seconds
+                setInterval(swapWordImage, 5000);
+                setInterval(updateList, 30000);
+            });
+    }
+
+    function getFileContent2() {
+        const url2 = "https://raw.githubusercontent.com/tbperson/Equation_screen/main/Word%20Equations.txt";
+        axios.get(url2)
+            .then(response => {
+                fileContent2 = response.data;
+                updateList();
             });
     }
 
     function updateList() {
         EQUATIONS = fileContent.trim().split("\n").map(line => line.split(",")[0]);
+        WORDEQUATIONS = fileContent2.trim().split("\n").map(line => line.split(",")[0]);
     }
 
-    getFileContent(); // Fetch file content immediately on page load
+    getFileContent();
+    getFileContent2();
 </script>
 </body>
 </html>
