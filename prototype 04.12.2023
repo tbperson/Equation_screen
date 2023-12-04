@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image swapping</title>
+<style>
+    body {
+        text-align: center;
+    }
+
+    #imageContainer img {
+        height: 100vh;
+        width: auto;
+    }
+</style>
+</head>
+
+<body>
+<div id="imageContainer"> </div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    var EQUATIONS = [];
+    var currentImage = 0;
+    var fileContent = ""; // Variable to store the fetched content
+
+    function swapImage() {
+        var imageContainer = document.getElementById("imageContainer");
+        if (currentImage == EQUATIONS.length) currentImage = 0;
+
+        imageContainer.innerHTML = "<img src='" + EQUATIONS[currentImage] + "' alt='Equation Image' style='height: 80vh; width: 80vh;'>";
+        currentImage++;
+    }
+
+    function getFileContent() {
+        const url = "https://raw.githubusercontent.com/tbperson/Equation_screen/main/images.txt";
+        axios.get(url)
+            .then(response => {
+                fileContent = response.data;
+                updateList(); // Update the list with the fetched content
+            })
+            .then(() => {
+                setInterval(swapImage, 5000);
+                setInterval(updateList, 30000); // Update the list every 30 seconds
+            });
+    }
+
+    function updateList() {
+        EQUATIONS = fileContent.trim().split("\n").map(line => line.split(",")[0]);
+    }
+
+    getFileContent(); // Fetch file content immediately on page load
+</script>
+</body>
+</html>
