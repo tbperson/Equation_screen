@@ -1,7 +1,7 @@
-https://equatio-api.texthelp.com/svg/S%3D%5Cfrac%7Bu%2Bv%7D%7B2%7Dt,
-https://equatio-api.texthelp.com/svg/F%3Dma, 
-https://equatio-api.texthelp.com/svg/E_P%3Dmgh,
+https://equatio-api.texthelp.com/svg/S%3D%5Cfrac%7Bu%2Bv%7D%7B2%7Dt, s= changein(v)/t
+https://equatio-api.texthelp.com/svg/F%3Dma, F=ma
+https://equatio-api.texthelp.com/svg/E_P%3Dmgh, Ep = mgh
 https://equatio-api.texthelp.com/svg/V%3DIR, Ohm's Law
-https://equatio-api.texthelp.com/svg/%5Cfrac%7BV_P%7D%7BV_S%7D%3D%5Cfrac%7BN_P%7D%7BN_S%7D,
-https://equatio-api.texthelp.com/svg/a%3D%5Cfrac%7B%5CDelta%20v%7D%7Bt%7D,
+https://equatio-api.texthelp.com/svg/%5Cfrac%7BV_P%7D%7BV_S%7D%3D%5Cfrac%7BN_P%7D%7BN_S%7D, Turns and voltage correlation
+https://equatio-api.texthelp.com/svg/a%3D%5Cfrac%7B%5CDelta%20v%7D%7Bt%7D, formula for acceleration
 
