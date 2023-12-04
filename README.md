@@ -1,4 +1,9 @@
-# Equation_screen
-A website to show physics equations on a classroom screen
-A way to change the sources of images will be added
+# Equation screen
 
+> **Supports**
+
+ - SVG vector symbol equations fetched from github repo
+ - SVG vector word equations fetched from github repo
+- Matches word to symbol equations
+- Change shift time by single variable in HTML file
+ - Future support for SVG vector/plaintext equation names
