@@ -10,13 +10,13 @@
         padding: 0;
     }
 
-    #imageContainer {
+    #equationContainer {
         position: relative;
         height: 80vh;
         overflow: hidden;
     }
     
-    #imageContainer img {
+    #equationContainer img {
         position: absolute;
         top: 0;
         left: 0;
@@ -25,7 +25,7 @@
         object-fit: contain;
     }
     
-    #imageContainer2 {
+    #wordEquationContainer {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -34,7 +34,7 @@
         background-color: transparent;
     }
 
-    #imageContainer2 img {
+    #wordEquationContainer img {
         top:0;
         left:0;
         height: 100%;
@@ -45,29 +45,29 @@
 </head>
 
 <body>
-<div id="imageContainer"></div>
-<div id="imageContainer2"></div>
+<div id="equationContainer"></div>
+<div id="wordEquationContainer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    var EQUATIONS = [];
-    var WORDEQUATIONS = [];
+    var equations = [];
+    var wordEquations = [];
     var currentImage = 0;
     var currentImage2 = 0;
     var fileContent = "";
     var fileContent2 = "";
 
     function swapImage() {
-        var imageContainer = document.getElementById("imageContainer");
-        if (currentImage == EQUATIONS.length) currentImage = 0;
+        var equationContainer = document.getElementById("equationContainer");
+        if (currentImage == equations.length) currentImage = 0;
 
-        imageContainer.innerHTML = "<img src='" + EQUATIONS[currentImage] + "' alt='Equation Image'>";
+        equationContainer.innerHTML = "<img src='" + equations[currentImage] + "' alt='Equation Image'>";
         currentImage++;
     }
 
     function swapWordImage() {
-        var imageContainer2 = document.getElementById("imageContainer2");
-        if (currentImage2 == WORDEQUATIONS.length) currentImage2 = 0;
+        var wordEquationContainer = document.getElementById("wordEquationContainer");
+        if (currentImage2 == wordEquations.length) currentImage2 = 0;
 
         imageContainer2.innerHTML = "<img src='" + WORDEQUATIONS[currentImage2] + "' alt='Word Equation Image'>";
         currentImage2++;
@@ -97,8 +97,8 @@
     }
 
     function updateList() {
-        EQUATIONS = fileContent.trim().split("\n").map(line => line.split(",")[0]);
-        WORDEQUATIONS = fileContent2.trim().split("\n").map(line => line.split(",")[0]);
+        equations = fileContent.trim().split("\n").map(line => line.split(",")[0]);
+        wordEquations = fileContent2.trim().split("\n").map(line => line.split(",")[0]);
     }
 
     getFileContent();
